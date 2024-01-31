@@ -78,7 +78,7 @@ const MobileNav = () => {
           />
 
           <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            Dev <span className="text-primary-500">Overflow</span>
+            Queri <span className="text-primary-500">Sphere</span>
           </p>
         </Link>
         <div>
