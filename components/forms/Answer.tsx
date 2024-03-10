@@ -18,6 +18,8 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { createAnswer } from "@/lib/actions/answer.action";
 import { usePathname } from "next/navigation";
+import { text } from "body-parser";
+import { format } from "path";
 
 interface Props {
   question: string;
@@ -78,17 +80,16 @@ const Answer = ({ question, questionId, authorId }: Props) => {
       );
 
       const aiAnswer = await response.json();
-      alert(aiAnswer.reply);
       // Convert plain text to HTML format
 
-      // const formattedAnswer = aiAnswer.reply.replace(/\n/g, "<br />");
+      const formattedAnswer = aiAnswer.reply.replace(/\n/g, "<br />");
 
-      // if (editorRef.current) {
-      //   const editor = editorRef.current as any;
-      //   editor.setContent(formattedAnswer);
-      // } else {
-      //   alert("no");
-      // }
+      if (editorRef.current) {
+        const editor = editorRef.current as any;
+        editor.setContent(formattedAnswer);
+      } else {
+        alert("no");
+      }
 
       // Toast...
     } catch (error) {
