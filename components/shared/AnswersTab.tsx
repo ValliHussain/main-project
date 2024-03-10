@@ -1,6 +1,10 @@
 import { getUserAnswers } from "@/lib/actions/user.action";
 import { SearchParamsProps } from "@/types";
 import AnswerCard from "../cards/AnswerCard";
+<<<<<<< HEAD
+=======
+import Pagination from "./Pagination";
+>>>>>>> All_set_branch
 
 interface Props extends SearchParamsProps {
   userId: string;
@@ -10,11 +14,17 @@ interface Props extends SearchParamsProps {
 const AnswersTab = async ({ searchParams, userId, clerkId }: Props) => {
   const result = await getUserAnswers({
     userId,
+<<<<<<< HEAD
     page: 1,
   });
 
   console.log(result.answers);
 
+=======
+    page: searchParams.page ? +searchParams.page : 1,
+  });
+
+>>>>>>> All_set_branch
   return (
     <>
       {result.answers.map((item) => (
@@ -28,6 +38,16 @@ const AnswersTab = async ({ searchParams, userId, clerkId }: Props) => {
           createdAt={item.createdAt}
         />
       ))}
+<<<<<<< HEAD
+=======
+
+      <div className="mt-10">
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNextAnswer}
+        />
+      </div>
+>>>>>>> All_set_branch
     </>
   );
 };

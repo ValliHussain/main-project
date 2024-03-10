@@ -1,4 +1,8 @@
 import { formatAndDivideNumber } from "@/lib/utils";
+<<<<<<< HEAD
+=======
+import { BadgeCounts } from "@/types";
+>>>>>>> All_set_branch
 import Image from "next/image";
 
 interface StatsCardProps {
@@ -22,12 +26,25 @@ const StatsCard = ({ imgUrl, value, title }: StatsCardProps) => {
 interface Props {
   totalQuestions: number;
   totalAnswers: number;
+<<<<<<< HEAD
 }
 
 const Stats = ({ totalQuestions, totalAnswers }: Props) => {
   return (
     <div className="mt-10">
       <h4 className="h3-semibold text-dark200_light900">Stats</h4>
+=======
+  badges: BadgeCounts;
+  reputation: number;
+}
+
+const Stats = ({ totalQuestions, totalAnswers, badges, reputation }: Props) => {
+  return (
+    <div className="mt-10">
+      <h4 className="h3-semibold text-dark200_light900">
+        Stats - {reputation}
+      </h4>
+>>>>>>> All_set_branch
 
       <div className="mt-5 grid grid-cols-1 gap-5 xs:grid-cols-2 md:grid-cols-4">
         <div className="light-border background-light900_dark300 flex flex-wrap items-center justify-evenly gap-4 rounded-md border p-6 shadow-light-300 dark:shadow-dark-200">
@@ -47,19 +64,31 @@ const Stats = ({ totalQuestions, totalAnswers }: Props) => {
 
         <StatsCard
           imgUrl="/assets/icons/gold-medal.svg"
+<<<<<<< HEAD
           value={0}
+=======
+          value={badges.GOLD}
+>>>>>>> All_set_branch
           title="Gold Badges"
         />
 
         <StatsCard
           imgUrl="/assets/icons/silver-medal.svg"
+<<<<<<< HEAD
           value={0}
+=======
+          value={badges.SILVER}
+>>>>>>> All_set_branch
           title="Silver Badges"
         />
 
         <StatsCard
           imgUrl="/assets/icons/bronze-medal.svg"
+<<<<<<< HEAD
           value={0}
+=======
+          value={badges.BRONZE}
+>>>>>>> All_set_branch
           title="Bronze Badges"
         />
       </div>

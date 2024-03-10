@@ -38,7 +38,11 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
   const parsedQuestionDetails =
     questionDetails && JSON.parse(questionDetails || "");
 
+<<<<<<< HEAD
   const groupedTags = parsedQuestionDetails?.tags.map((tag) => tag.name);
+=======
+  const groupedTags = parsedQuestionDetails?.tags.map((tag: any) => tag.name);
+>>>>>>> All_set_branch
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof QuestionsSchema>>({

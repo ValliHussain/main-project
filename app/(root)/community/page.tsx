@@ -1,5 +1,9 @@
 import UserCard from "@/components/cards/UserCard";
 import Filter from "@/components/shared/Filter";
+<<<<<<< HEAD
+=======
+import Pagination from "@/components/shared/Pagination";
+>>>>>>> All_set_branch
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { UserFilters } from "@/constants/filters";
 import { getAllUsers } from "@/lib/actions/user.action";
@@ -10,6 +14,10 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
   const result = await getAllUsers({
     searchQuery: searchParams.q,
     filter: searchParams.filter,
+<<<<<<< HEAD
+=======
+    page: searchParams.page ? +searchParams.page : 1,
+>>>>>>> All_set_branch
   });
 
   return (
@@ -43,6 +51,16 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
           </div>
         )}
       </section>
+<<<<<<< HEAD
+=======
+
+      <div className="mt-10">
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
+      </div>
+>>>>>>> All_set_branch
     </>
   );
 };
