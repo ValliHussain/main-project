@@ -18,8 +18,6 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { createAnswer } from "@/lib/actions/answer.action";
 import { usePathname } from "next/navigation";
-import { text } from "body-parser";
-import { format } from "path";
 
 interface Props {
   question: string;
