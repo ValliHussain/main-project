@@ -2,27 +2,17 @@ import { getUserQuestions } from "@/lib/actions/user.action";
 import { SearchParamsProps } from "@/types";
 import React from "react";
 import QuestionCard from "../cards/QuestionCard";
-<<<<<<< HEAD
-=======
 import Pagination from "./Pagination";
->>>>>>> All_set_branch
 
 interface Props extends SearchParamsProps {
   userId: string;
   clerkId?: string | null;
 }
 
-<<<<<<< HEAD
-const QuestionTab = async ({ searchProps, userId, clerkId }: Props) => {
-  const result = await getUserQuestions({
-    userId,
-    page: 1,
-=======
 const QuestionTab = async ({ searchParams, userId, clerkId }: Props) => {
   const result = await getUserQuestions({
     userId,
     page: searchParams.page ? +searchParams.page : 1,
->>>>>>> All_set_branch
   });
 
   return (
@@ -41,8 +31,6 @@ const QuestionTab = async ({ searchParams, userId, clerkId }: Props) => {
           createdAt={question.createdAt}
         />
       ))}
-<<<<<<< HEAD
-=======
 
       <div className="mt-10">
         <Pagination
@@ -50,7 +38,6 @@ const QuestionTab = async ({ searchParams, userId, clerkId }: Props) => {
           isNext={result.isNextQuestions}
         />
       </div>
->>>>>>> All_set_branch
     </>
   );
 };

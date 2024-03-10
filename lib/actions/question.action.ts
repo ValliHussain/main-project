@@ -10,10 +10,7 @@ import {
   GetQuestionByIdParams,
   GetQuestionsParams,
   QuestionVoteParams,
-<<<<<<< HEAD
-=======
   RecommendedParams,
->>>>>>> All_set_branch
 } from "./shared.types";
 import User from "@/database/user.model";
 import { revalidatePath } from "next/cache";
@@ -25,14 +22,10 @@ export async function getQuestions(params: GetQuestionsParams) {
   try {
     connectToDatabase();
 
-<<<<<<< HEAD
-    const { searchQuery, filter } = params;
-=======
     const { searchQuery, filter, page = 1, pageSize = 10 } = params;
 
     // Calculcate the number of posts to skip based on the page number and page size
     const skipAmount = (page - 1) * pageSize;
->>>>>>> All_set_branch
 
     const query: FilterQuery<typeof Question> = {};
 
@@ -62,11 +55,6 @@ export async function getQuestions(params: GetQuestionsParams) {
     const questions = await Question.find(query)
       .populate({ path: "tags", model: Tag })
       .populate({ path: "author", model: User })
-<<<<<<< HEAD
-      .sort(sortOptions);
-
-    return { questions };
-=======
       .skip(skipAmount)
       .limit(pageSize)
       .sort(sortOptions);
@@ -76,7 +64,6 @@ export async function getQuestions(params: GetQuestionsParams) {
     const isNext = totalQuestions > skipAmount + questions.length;
 
     return { questions, isNext };
->>>>>>> All_set_branch
   } catch (error) {
     console.log(error);
     throw error;
@@ -114,13 +101,6 @@ export async function createQuestion(params: CreateQuestionParams) {
     });
 
     // Create an interaction record for the user's ask_question action
-<<<<<<< HEAD
-
-    // Increment author's reputation by +5 for creating a question
-
-    revalidatePath(path);
-  } catch (error) {}
-=======
     await Interaction.create({
       user: author,
       action: "ask_question",
@@ -135,7 +115,6 @@ export async function createQuestion(params: CreateQuestionParams) {
   } catch (error) {
     console.log(error);
   }
->>>>>>> All_set_branch
 }
 
 export async function getQuestionById(params: GetQuestionByIdParams) {
@@ -186,9 +165,6 @@ export async function upvoteQuestion(params: QuestionVoteParams) {
       throw new Error("Question not found");
     }
 
-<<<<<<< HEAD
-    // Increment author's reputation
-=======
     // Increment author's reputation by +1/-1 for upvoting/revoking an upvote to the question
     await User.findByIdAndUpdate(userId, {
       $inc: { reputation: hasupVoted ? -1 : 1 },
@@ -198,7 +174,6 @@ export async function upvoteQuestion(params: QuestionVoteParams) {
     await User.findByIdAndUpdate(question.author, {
       $inc: { reputation: hasupVoted ? -10 : 10 },
     });
->>>>>>> All_set_branch
 
     revalidatePath(path);
   } catch (error) {
@@ -235,8 +210,6 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
     }
 
     // Increment author's reputation
-<<<<<<< HEAD
-=======
     await User.findByIdAndUpdate(userId, {
       $inc: { reputation: hasdownVoted ? -2 : 2 },
     });
@@ -244,7 +217,6 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
     await User.findByIdAndUpdate(question.author, {
       $inc: { reputation: hasdownVoted ? -10 : 10 },
     });
->>>>>>> All_set_branch
 
     revalidatePath(path);
   } catch (error) {
@@ -310,8 +282,6 @@ export async function getHotQuestions() {
     throw error;
   }
 }
-<<<<<<< HEAD
-=======
 
 export async function getRecommendedQuestions(params: RecommendedParams) {
   try {
@@ -383,4 +353,3 @@ export async function getRecommendedQuestions(params: RecommendedParams) {
     throw error;
   }
 }
->>>>>>> All_set_branch

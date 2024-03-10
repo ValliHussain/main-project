@@ -11,10 +11,7 @@ import { formatAndDivideNumber } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
-<<<<<<< HEAD
-=======
 import { toast } from "../ui/use-toast";
->>>>>>> All_set_branch
 
 interface Props {
   type: string;
@@ -46,26 +43,19 @@ const Votes = ({
       questionId: JSON.parse(itemId),
       path: pathname,
     });
-<<<<<<< HEAD
-=======
 
     return toast({
       title: `Question ${!hasSaved ? "Saved in" : "Removed from"} your collection`,
       variant: !hasSaved ? "default" : "destructive",
     });
->>>>>>> All_set_branch
   };
 
   const handleVote = async (action: string) => {
     if (!userId) {
-<<<<<<< HEAD
-      return;
-=======
       return toast({
         title: "Please log in",
         description: "You must be logged in to perform this action",
       });
->>>>>>> All_set_branch
     }
 
     if (action === "upvote") {
@@ -87,15 +77,10 @@ const Votes = ({
         });
       }
 
-<<<<<<< HEAD
-      // todo: show a toast
-      return;
-=======
       return toast({
         title: `Upvote ${!hasupVoted ? "Successful" : "Removed"}`,
         variant: !hasupVoted ? "default" : "destructive",
       });
->>>>>>> All_set_branch
     }
 
     if (action === "downvote") {
@@ -117,14 +102,10 @@ const Votes = ({
         });
       }
 
-<<<<<<< HEAD
-      // todo: show a toast
-=======
       return toast({
         title: `Downvote ${!hasupVoted ? "Successful" : "Removed"}`,
         variant: !hasupVoted ? "default" : "destructive",
       });
->>>>>>> All_set_branch
     }
   };
 

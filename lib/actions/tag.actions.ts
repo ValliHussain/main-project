@@ -38,12 +38,8 @@ export async function getAllTags(params: GetAllTagsParams) {
   try {
     connectToDatabase();
 
-<<<<<<< HEAD
-    const { searchQuery, filter } = params;
-=======
     const { searchQuery, filter, page = 1, pageSize = 10 } = params;
     const skipAmount = (page - 1) * pageSize;
->>>>>>> All_set_branch
 
     const query: FilterQuery<typeof Tag> = {};
 
@@ -71,11 +67,6 @@ export async function getAllTags(params: GetAllTagsParams) {
         break;
     }
 
-<<<<<<< HEAD
-    const tags = await Tag.find(query).sort(sortOptions);
-
-    return { tags };
-=======
     const totalTags = await Tag.countDocuments(query);
 
     const tags = await Tag.find(query)
@@ -86,7 +77,6 @@ export async function getAllTags(params: GetAllTagsParams) {
     const isNext = totalTags > skipAmount + tags.length;
 
     return { tags, isNext };
->>>>>>> All_set_branch
   } catch (error) {
     console.log(error);
     throw error;
@@ -98,10 +88,7 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
     connectToDatabase();
 
     const { tagId, page = 1, pageSize = 10, searchQuery } = params;
-<<<<<<< HEAD
-=======
     const skipAmount = (page - 1) * pageSize;
->>>>>>> All_set_branch
 
     const tagFilter: FilterQuery<ITag> = { _id: tagId };
 
@@ -113,11 +100,8 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
         : {},
       options: {
         sort: { createdAt: -1 },
-<<<<<<< HEAD
-=======
         skip: skipAmount,
         limit: pageSize + 1, // +1 to check if there is next page
->>>>>>> All_set_branch
       },
       populate: [
         { path: "tags", model: Tag, select: "_id name" },
@@ -129,19 +113,11 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
       throw new Error("Tag not found");
     }
 
-<<<<<<< HEAD
-    console.log(tag);
-
-    const questions = tag.questions;
-
-    return { tagTitle: tag.name, questions };
-=======
     const isNext = tag.questions.length > pageSize;
 
     const questions = tag.questions;
 
     return { tagTitle: tag.name, questions, isNext };
->>>>>>> All_set_branch
   } catch (error) {
     console.log(error);
     throw error;
