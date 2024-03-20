@@ -24,7 +24,6 @@ export default async function Home({ searchParams }: SearchParamsProps) {
   const { userId } = auth();
 
   let result;
-
   if (searchParams?.filter === "recommended") {
     if (userId) {
       result = await getRecommendedQuestions({
